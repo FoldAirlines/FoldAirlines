@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2A1E66">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fold Airlines">
+<meta property="og:description" content="Steer a paper plane through an endless house. Free on Google Play.">
+<meta property="og:image" content="assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<title>Fold Airlines</title>
+<meta name="description" content="Fold Airlines: steer a paper plane through an endless house. Libraries, kitchens, pillow fights and rooftops. Free on Google Play.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Caveat:wght@600;700&family=Lilita+One&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* Layout: one flight from the sunset sky, through the night-time house, down to the desk the plane was folded on. */
+:root {
+  --ink: #13205A;          /* logo outline navy */
+  --night: #151236;
+  --dusk: #2A1F5E;
+  --violet: #6B55C4;
+  --gold: #FFC83D;
+  --gold-deep: #F29A1F;
+  --roof: #E2633A;
+  --scarf: #D8322F;
+  --paper: #FCF8EE;
+  --rule: #B5CBEE;
+  --margin: #E8746A;
+  --desk: #E7D2B4;
+  --desk-dark: #D9BF9A;
+  --led: #FFD23F;
+  --go: #6BE38F;
+  --text-light: #FFF8EE;
+  --text-soft: #CFC6EE;
+  --text-dark: #22203A;
+  --text-dim: #5E5873;
+  --f-display: "Lilita One", "Arial Rounded MT Bold", "Trebuchet MS", system-ui, sans-serif;
+  --f-body: "Baloo 2", "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --f-hand: "Caveat", "Segoe Print", "Comic Sans MS", cursive;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  color-scheme: dark;
+}
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--night); color: var(--text-light); font-family: var(--f-body); font-size: 17px; line-height: 1.5; overflow-x: hidden; }
+img, video, svg { display: block; max-width: 100%; }
+img { height: auto; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+.wrap { width: 100%; max-width: 1160px; margin-inline: auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 400; line-height: 1.05; margin: 0; text-wrap: balance; letter-spacing: .01em; }
+p { margin: 0; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--led); }
+.h2 { font-size: clamp(36px, 9vw, 64px); color: #fff; text-shadow: 0 3px 0 var(--ink), 0 -2px 0 var(--ink), 2px 0 0 var(--ink), -2px 0 0 var(--ink), 0 7px 0 rgba(0,0,0,.25); }
+.eyebrow.on-desk { color: #7A4B12; }
+.lede { color: var(--text-soft); font-size: 18px; max-width: 34em; }
+
+/* ---------------- header */
+.top { position: fixed; inset: 0 0 auto; z-index: 50; padding-top: env(safe-area-inset-top, 0px); transition: background .3s, box-shadow .3s; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 60px; }
+.top.scrolled { background: rgba(21, 18, 54, .88); box-shadow: 0 1px 0 rgba(255,255,255,.08); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--f-display); font-size: 21px; letter-spacing: .02em; }
+.brand img { width: 36px; height: 36px; border-radius: 10px; box-shadow: 0 2px 0 rgba(0,0,0,.25); }
+.brand span b { color: var(--gold); font-weight: 400; }
+.top-cta { font-family: var(--f-display); font-size: 16px; text-decoration: none; color: var(--ink); background: var(--gold); padding: 8px 16px; border-radius: 999px; box-shadow: 0 3px 0 var(--gold-deep); white-space: nowrap; }
+.top-cta:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--gold-deep); }
+
+/* ---------------- hero */
+.hero { position: relative; overflow: hidden; isolation: isolate;
+  background: linear-gradient(180deg, #2A1E66 0%, #4B3BA6 16%, #8360C4 36%, #C886C9 56%, #F4A3A6 72%, #FFC38E 86%, #FFD9A0 100%); }
+.hero .wrap { position: relative; z-index: 3; display: grid; justify-items: center; text-align: center; gap: 16px; padding-top: 76px; padding-bottom: 150px; }
+.sun { position: absolute; left: 50%; top: 58%; width: 900px; height: 900px; translate: -50% -50%; z-index: -1; background: radial-gradient(circle, rgba(255,236,190,.85) 0%, rgba(255,205,150,.45) 18%, rgba(255,190,150,0) 46%); }
+.rays { position: absolute; left: 50%; top: 52%; width: 1300px; height: 1300px; translate: -50% -50%; z-index: -1; opacity: .5;
+  background: repeating-conic-gradient(from 0deg, rgba(255,244,214,.35) 0deg 5deg, rgba(255,244,214,0) 5deg 15deg);
+  -webkit-mask-image: radial-gradient(circle, #000 0%, rgba(0,0,0,.5) 28%, transparent 56%); mask-image: radial-gradient(circle, #000 0%, rgba(0,0,0,.5) 28%, transparent 56%);
+  animation: spin 90s linear infinite; }
+@keyframes spin { to { rotate: 360deg; } }
+.cloud { position: absolute; z-index: -1; height: 60px; border-radius: 999px; background: radial-gradient(ellipse at 50% 60%, rgba(255,226,240,.75), rgba(255,226,240,0) 70%); animation: drift linear infinite; }
+.cloud.c1 { top: 15%; width: 340px; left: -10%; animation-duration: 70s; }
+.cloud.c2 { top: 30%; width: 260px; left: 55%; opacity: .7; animation-duration: 95s; animation-delay: -30s; }
+.cloud.c3 { top: 47%; width: 420px; left: 20%; opacity: .55; height: 80px; animation-duration: 120s; animation-delay: -60s; }
+.cloud.c4 { top: 8%; width: 200px; left: 70%; opacity: .5; animation-duration: 80s; animation-delay: -10s; }
+@keyframes drift { from { transform: translateX(-30vw); } to { transform: translateX(60vw); } }
+.flyer { position: absolute; z-index: -1; width: 34px; color: rgba(255,255,255,.75); offset-rotate: auto; animation: flyacross linear infinite; }
+.flyer.f1 { top: 22%; animation-duration: 16s; animation-delay: -4s; }
+.flyer.f2 { top: 38%; width: 22px; animation-duration: 22s; animation-delay: -14s; opacity: .7; }
+.flyer.f3 { top: 9%; width: 18px; animation-duration: 28s; animation-delay: -2s; opacity: .5; }
+@keyframes flyacross { 0% { transform: translate(-60px, 30px) rotate(-8deg); } 50% { transform: translate(55vw, -20px) rotate(4deg); } 100% { transform: translate(110vw, 25px) rotate(-6deg); } }
+
+.pill { display: inline-flex; align-items: center; gap: 8px; font-family: var(--f-mono); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink); background: rgba(255,255,255,.88); padding: 6px 14px 6px 10px; border-radius: 999px; box-shadow: 0 3px 0 rgba(19,32,90,.25); animation: rise .6s .9s both; }
+.pill i { width: 9px; height: 9px; border-radius: 50%; background: #2DBE5E; box-shadow: 0 0 0 0 rgba(45,190,94,.6); animation: ping 1.6s infinite; }
+@keyframes ping { 70% { box-shadow: 0 0 0 9px rgba(45,190,94,0); } 100% { box-shadow: 0 0 0 0 rgba(45,190,94,0); } }
+.logo { width: min(94%, 560px); filter: drop-shadow(0 8px 0 rgba(19,32,90,.22)) drop-shadow(0 18px 24px rgba(40,20,90,.35)); animation: logo-in .9s cubic-bezier(.2,1.6,.4,1) .15s both; }
+@keyframes logo-in { from { transform: translateY(-40px) scale(.7); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.captain-stage { position: relative; width: min(84vw, 430px); aspect-ratio: 1; margin-block: -6px -10px; }
+.ring { position: absolute; inset: 9%; border-radius: 50%;
+  background: radial-gradient(circle, transparent 60.5%, #FFF1A8 61.5%, #FFD24A 65%, #F6A623 69.5%, #FFD24A 72%, transparent 73%);
+  filter: drop-shadow(0 0 18px rgba(255,214,90,.8)); animation: ring-in .8s .35s cubic-bezier(.2,1.5,.4,1) both, ring-pulse 3.2s 1.2s ease-in-out infinite; }
+@keyframes ring-in { from { transform: scale(.2); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes ring-pulse { 50% { transform: scale(1.035); } }
+.trail { position: absolute; inset: -6% -20% 10% -40%; width: 160%; overflow: visible; pointer-events: none; }
+.trail path { fill: none; stroke: url(#trailGrad); stroke-width: 26; stroke-linecap: round; stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw 1.1s .45s ease-out forwards; opacity: .9; }
+.trail path + path { stroke-width: 9; stroke: rgba(255,255,255,.85); animation-delay: .55s; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.captain { position: absolute; inset: 4% 2% 6% 2%; width: 96%; animation: fly-in 1.1s cubic-bezier(.25,.9,.3,1.15) .3s both, bob 4.2s 1.4s ease-in-out infinite; transform-origin: 50% 60%; filter: drop-shadow(0 22px 22px rgba(60,20,80,.35)); }
+@keyframes fly-in { 0% { transform: translate(-75vw, 45%) rotate(-28deg) scale(.45); opacity: 0; } 20% { opacity: 1; } 100% { transform: none; } }
+@keyframes bob { 0%, 100% { transform: translateY(0) rotate(-1.5deg); } 50% { transform: translateY(-14px) rotate(2deg); } }
+.spark { position: absolute; width: 22px; aspect-ratio: 1; background: #fff; clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%); animation: twinkle 2.4s ease-in-out infinite; filter: drop-shadow(0 0 6px #fff); }
+.spark.s1 { left: 6%; top: 18%; animation-delay: .2s; } .spark.s2 { left: 88%; top: 26%; width: 16px; animation-delay: 1.1s; }
+.spark.s3 { left: 14%; top: 70%; width: 13px; animation-delay: .7s; } .spark.s4 { left: 82%; top: 72%; animation-delay: 1.6s; }
+.spark.s5 { left: 48%; top: 2%; width: 14px; animation-delay: 2s; }
+@keyframes twinkle { 0%, 100% { transform: scale(.3); opacity: .2; } 50% { transform: scale(1); opacity: 1; } }
+
+.hero h1 { font-size: clamp(34px, 9.4vw, 60px); color: #fff; text-shadow: 0 3px 0 var(--ink), 0 -2px 0 var(--ink), 2px 0 0 var(--ink), -2px 0 0 var(--ink), 0 8px 0 rgba(19,32,90,.3); animation: rise .7s .75s both; }
+.hero .sub { color: #3A2560; font-weight: 600; font-size: 18px; max-width: 26em; animation: rise .7s .85s both; }
+@keyframes rise { from { transform: translateY(18px); opacity: 0; } to { transform: none; opacity: 1; } }
+.stores { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; animation: rise .7s .95s both; }
+.store { display: inline-flex; align-items: center; gap: 12px; min-width: 196px; padding: 10px 20px 10px 16px; border-radius: 16px; text-decoration: none; color: #fff; background: #0E0B1F; border: 2px solid rgba(255,255,255,.22); box-shadow: 0 5px 0 rgba(0,0,0,.35); text-align: left; position: relative; overflow: hidden; }
+.store svg { width: 30px; height: 30px; flex: none; }
+.store span { display: grid; line-height: 1.05; }
+.store small { font-family: var(--f-mono); font-size: 10px; letter-spacing: .12em; opacity: .8; }
+.store b { font-family: var(--f-display); font-weight: 400; font-size: 25px; letter-spacing: .01em; }
+.store-play::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.28) 48%, transparent 66%); transform: translateX(-120%); animation: shine 3.6s 2s ease-in-out infinite; }
+@keyframes shine { 0%, 55% { transform: translateX(-120%); } 85%, 100% { transform: translateX(120%); } }
+.store-play:hover { border-color: var(--gold); }
+.store-play:active { transform: translateY(3px); box-shadow: 0 2px 0 rgba(0,0,0,.35); }
+.store-soon { background: rgba(14,11,31,.35); border-style: dashed; box-shadow: none; color: rgba(255,255,255,.85); cursor: default; }
+.store-soon b { font-size: 22px; }
+.hero .store-soon { color: var(--ink); background: rgba(255,255,255,.4); border-color: rgba(19,32,90,.4); }
+.note { font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; color: #4B2F6E; animation: rise .7s 1.05s both; }
+
+.skyline-wrap { position: absolute; inset: auto 0 0 0; height: 170px; z-index: 2; pointer-events: none; }
+.skyline { position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; }
+.skyline-far { bottom: 34px; height: 150px; opacity: .9; }
+.skyline-near { height: 130px; }
+.skyline .win { animation: windows 5s ease-in-out infinite; }
+@keyframes windows { 50% { opacity: .65; } }
+
+/* ---------------- ticker */
+.ticker { background: var(--ink); color: var(--led); font-family: var(--f-mono); font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; overflow: hidden; white-space: nowrap; border-block: 3px solid #0A1240; position: relative; z-index: 4; }
+.ticker-track { display: inline-flex; gap: 0; padding-block: 12px; animation: marquee 38s linear infinite; text-shadow: 0 0 8px rgba(255,210,63,.55); }
+.ticker-track span { padding-inline: 18px; }
+.ticker-track span::after { content: "✈"; padding-left: 36px; color: #fff; text-shadow: none; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------------- fly section */
+.fly { background: linear-gradient(180deg, #2B1F60 0%, #1C1747 100%); position: relative; overflow: hidden; }
+.fly .wrap { display: grid; gap: 40px; padding-block: 72px 80px; align-items: center; }
+.fly-copy { display: grid; gap: 14px; }
+.phone-area { position: relative; width: min(74vw, 300px); justify-self: center; }
+.phone { position: relative; border-radius: 42px; padding: 10px; background: linear-gradient(145deg, #2C2A3A, #0B0A12); box-shadow: 0 0 0 2px #45425A, 0 40px 60px rgba(0,0,0,.45), 0 0 80px rgba(130,100,240,.35); }
+.phone video, .phone img { width: 100%; aspect-ratio: 480 / 946; object-fit: cover; border-radius: 33px; background: #222; }
+.phone::before { content: ""; position: absolute; top: 18px; left: 50%; translate: -50% 0; width: 26%; height: 20px; border-radius: 999px; background: #0B0A12; z-index: 2; }
+.chip { position: absolute; z-index: 3; font-family: var(--f-display); font-size: 17px; letter-spacing: .02em; padding: 6px 12px; border-radius: 12px; background: #fff; color: var(--ink); box-shadow: 0 4px 0 rgba(0,0,0,.25); white-space: nowrap; animation: hover 3.6s ease-in-out infinite; }
+.chip.k1 { top: 18%; left: -18%; rotate: -6deg; color: #1B78D8; }
+.chip.k2 { top: 47%; right: -20%; rotate: 5deg; background: var(--gold); animation-delay: -1.2s; }
+.chip.k3 { bottom: 14%; left: -14%; rotate: -3deg; font-family: var(--f-mono); font-weight: 700; font-size: 14px; animation-delay: -2.2s; }
+@keyframes hover { 50% { transform: translateY(-8px); } }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 8px; }
+.fact { border-top: 2px solid rgba(255,255,255,.14); padding-top: 10px; }
+.fact b { display: block; font-family: var(--f-display); font-weight: 400; font-size: 26px; color: var(--gold); line-height: 1.1; }
+.fact span { font-size: 14px; color: var(--text-soft); line-height: 1.3; display: block; }
+
+/* ---------------- departures */
+.departures { background: var(--night); }
+.departures .wrap { padding-block: 72px 24px; display: grid; gap: 22px; }
+.board-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.board-title { display: flex; align-items: center; gap: 12px; font-family: var(--f-mono); font-weight: 700; color: var(--led); font-size: clamp(26px, 7vw, 40px); letter-spacing: .12em; text-shadow: 0 0 14px rgba(255,210,63,.45); }
+.board-title svg { width: 34px; color: var(--led); }
+.rooms { display: grid; grid-auto-flow: column; grid-auto-columns: min(72vw, 270px); gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter-l);
+  padding: 4px var(--gutter-r) 22px var(--gutter-l); scrollbar-width: thin; scrollbar-color: #4A4380 transparent; }
+.rooms-outer { padding-bottom: 72px; background: var(--night); }
+.room { scroll-snap-align: start; background: #0C0A22; border-radius: 18px; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,255,255,.07); display: grid; min-width: 0; }
+.room-row { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; padding: 10px 12px; font-family: var(--f-mono); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--led); background: #07061A; border-bottom: 1px solid rgba(255,255,255,.06); }
+.room-row .dest { color: #fff; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.status { padding: 2px 6px; border-radius: 4px; font-size: 10px; letter-spacing: .1em; background: rgba(255,255,255,.08); color: #fff; }
+.status.go { background: rgba(107,227,143,.15); color: var(--go); animation: blink 1.2s steps(2, jump-none) infinite; }
+.status.warn { background: rgba(255,150,70,.15); color: #FF9B5B; }
+.status.dark { background: rgba(160,140,255,.16); color: #B9A8FF; }
+@keyframes blink { 50% { opacity: .35; } }
+.room video, .room img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; background: #1D1A3A; }
+.room p { padding: 12px 14px 16px; font-size: 15px; line-height: 1.4; color: var(--text-soft); }
+.swipe-hint { font-family: var(--f-mono); font-size: 12px; letter-spacing: .1em; color: var(--text-soft); text-transform: uppercase; margin-left: auto; display: flex; align-items: center; gap: 6px; }
+.swipe-hint svg { width: 22px; animation: nudge 1.4s ease-in-out infinite; }
+@keyframes nudge { 50% { transform: translateX(6px); } }
+
+/* ---------------- pause challenge */
+.challenge { background: linear-gradient(180deg, var(--night) 0%, #2A1F5E 100%); }
+.challenge .wrap { display: grid; gap: 28px; padding-block: 24px 88px; align-items: center; }
+.challenge-copy { display: grid; gap: 14px; }
+.game { width: min(100%, 480px); justify-self: center; display: grid; gap: 14px; }
+.stage { position: relative; width: 100%; aspect-ratio: 4 / 5; border-radius: 24px; overflow: hidden; background: #3B2B58 url("assets/game-bg.jpg") center / cover; box-shadow: 0 0 0 3px rgba(255,255,255,.12), 0 30px 60px rgba(0,0,0,.4); touch-action: manipulation; cursor: pointer; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+.stage video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.stage::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,10,50,.35), transparent 30%, transparent 70%, rgba(20,10,50,.35)); pointer-events: none; }
+.g-outline, .g-capt { position: absolute; left: 0; top: 0; width: 44%; aspect-ratio: 1; transform-origin: 50% 50%; will-change: transform; pointer-events: none; }
+.g-outline { overflow: visible; z-index: 1; }
+.g-outline .under { fill: none; stroke: rgba(10,8,30,.55); stroke-width: 34; stroke-linejoin: round; }
+.g-outline .dash { fill: none; stroke: var(--led); stroke-width: 18; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 52 34; transition: stroke .2s; }
+.stage.hit .g-outline .dash { stroke: var(--go); }
+.g-capt { z-index: 2; filter: drop-shadow(0 14px 12px rgba(30,10,60,.35)); }
+.g-hud { position: absolute; z-index: 3; inset: 12px 14px auto; display: flex; justify-content: space-between; font-family: var(--f-mono); font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+.g-hud span { background: rgba(12,10,34,.7); padding: 5px 10px; border-radius: 8px; }
+.g-hud b { color: var(--led); }
+.g-result { position: absolute; z-index: 4; left: 50%; bottom: 16px; translate: -50% 0; width: calc(100% - 28px); text-align: center; padding: 12px 14px; border-radius: 16px; background: rgba(12,10,34,.86); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.g-result[hidden] { display: none; }
+.g-result strong { display: block; font-family: var(--f-display); font-weight: 400; font-size: 32px; line-height: 1.05; color: #fff; }
+.g-result.good strong { color: var(--go); } .g-result.ok strong { color: var(--led); } .g-result.miss strong { color: #FF8F7A; }
+.g-result small { font-family: var(--f-mono); font-size: 13px; color: var(--text-soft); letter-spacing: .04em; }
+.g-btn { font-family: var(--f-display); font-size: 30px; letter-spacing: .04em; color: var(--ink); background: var(--gold); border: 0; border-radius: 18px; padding: 14px 20px; box-shadow: 0 6px 0 var(--gold-deep), 0 14px 24px rgba(0,0,0,.3); cursor: pointer; touch-action: manipulation; }
+.g-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--gold-deep); }
+.g-tip { font-size: 14px; color: var(--text-soft); text-align: center; }
+
+/* ---------------- desk sections */
+.desk { position: relative; color: var(--text-dark);
+  background: repeating-linear-gradient(92deg, rgba(120,80,40,.06) 0 2px, transparent 2px 38px), repeating-linear-gradient(88deg, rgba(255,255,255,.08) 0 1px, transparent 1px 23px), linear-gradient(180deg, var(--desk) 0%, var(--desk-dark) 100%); }
+.desk .wrap { display: grid; gap: 64px; padding-block: 80px 96px; }
+.desk .h2 { color: var(--paper); }
+
+.paper { position: relative; background: var(--paper); border-radius: 4px; padding: 30px 18px 34px 52px; rotate: -.8deg;
+  background-image: linear-gradient(90deg, transparent 38px, var(--margin) 38px, var(--margin) 40px, transparent 40px), repeating-linear-gradient(180deg, transparent 0 31px, var(--rule) 31px 32px);
+  background-position: 0 0, 0 22px; box-shadow: 0 2px 0 rgba(0,0,0,.05), 0 18px 34px rgba(90,60,30,.25); max-width: 760px; width: 100%; justify-self: center; }
+.paper::before, .paper::after { content: ""; position: absolute; width: 96px; height: 28px; background: rgba(255,248,200,.7); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+.paper::before { top: -12px; left: 18px; rotate: -6deg; }
+.paper::after { top: -10px; right: 20px; rotate: 5deg; }
+.paper h2 { font-size: clamp(38px, 10vw, 58px); color: var(--ink); line-height: 1; }
+.hand { font-family: var(--f-hand); font-weight: 700; color: #2B5BC0; font-size: 26px; line-height: 1.1; }
+.paper .hand.kicker { display: block; rotate: -2deg; margin: 4px 0 18px; }
+.manual { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; }
+.manual li { display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: 12px; align-items: start; }
+.manual svg { width: 46px; height: 46px; color: var(--ink); }
+.manual h3 { font-size: 23px; color: var(--ink); margin-bottom: 2px; }
+.manual p { color: var(--text-dim); font-size: 16px; line-height: 1.45; }
+.margin-note { font-family: var(--f-hand); font-weight: 700; color: var(--scarf); font-size: 24px; rotate: -3deg; margin-top: 22px; line-height: 1.1; }
+
+.hangar-head { display: grid; gap: 10px; text-align: center; justify-items: center; }
+.hangar-head .lede { color: #5A4630; }
+.polaroids { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px 14px; }
+.polaroid { margin: 0; width: min(41vw, 180px); background: #fff; padding: 8px 8px 0; box-shadow: 0 10px 22px rgba(90,60,30,.28); transition: transform .25s; }
+.polaroid:nth-child(odd) { rotate: -3deg; } .polaroid:nth-child(even) { rotate: 2.5deg; } .polaroid:nth-child(3) { rotate: -1deg; }
+.polaroid:hover { transform: translateY(-6px) scale(1.03); }
+.polaroid img { width: 100%; aspect-ratio: 1; object-fit: cover; background: #ddd; }
+.polaroid figcaption { font-family: var(--f-hand); font-weight: 700; font-size: 25px; text-align: center; padding: 4px 0 8px; color: var(--text-dark); }
+
+/* licence */
+.licence-wrap { display: grid; gap: 20px; justify-items: center; text-align: center; }
+.licence { width: min(100%, 460px); border-radius: 22px; overflow: hidden; background: #FFFDF6; color: var(--text-dark); text-align: left; position: relative; box-shadow: 0 2px 0 rgba(0,0,0,.08), 0 26px 44px rgba(80,50,20,.3); transform-style: preserve-3d; transition: transform .2s ease-out; }
+.licence::after { content: ""; position: absolute; inset: 0; pointer-events: none; mix-blend-mode: soft-light;
+  background: linear-gradient(115deg, transparent 20%, rgba(255,120,200,.55) 35%, rgba(120,220,255,.55) 45%, rgba(255,240,140,.55) 55%, transparent 70%); background-size: 250% 100%; animation: holo 6s ease-in-out infinite; }
+@keyframes holo { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0 0; } }
+.lic-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; background: var(--ink); color: #fff; padding: 12px 16px; font-family: var(--f-mono); font-size: 11px; font-weight: 700; letter-spacing: .14em; }
+.lic-top b { font-family: var(--f-display); font-weight: 400; font-size: 18px; letter-spacing: .02em; color: var(--gold); }
+.lic-body { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 16px; padding: 16px; }
+.lic-photo { border-radius: 12px; background: linear-gradient(180deg, #8360C4, #F4A3A6); aspect-ratio: 3 / 4; display: grid; place-items: center; overflow: hidden; position: relative; }
+.lic-photo img { width: 125%; max-width: none; translate: 0 6%; }
+.lic-fields { display: grid; gap: 8px; min-width: 0; }
+.lic-fields div { display: grid; }
+.lic-fields dt, .lic-fields span { font-family: var(--f-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #8A8398; }
+.lic-fields dd { margin: 0; font-weight: 700; font-size: 15px; line-height: 1.25; }
+.lic-sign { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: end; gap: 10px; border-top: 1px dashed #CFC8D8; padding-top: 10px; }
+.lic-sign .hand { font-family: var(--f-hand); font-size: 34px; letter-spacing: 0; text-transform: none; color: var(--ink); }
+.lic-sign span { font-family: var(--f-mono); font-size: 10px; letter-spacing: .12em; color: #8A8398; }
+
+/* boarding pass */
+.pass-wrap { display: grid; gap: 22px; justify-items: center; text-align: center; }
+.pass { width: min(100%, 720px); display: grid; text-align: left; color: var(--text-dark); filter: drop-shadow(0 22px 30px rgba(80,50,20,.3)); }
+.pass-main, .pass-stub { background: #fff; position: relative; }
+.pass-main { border-radius: 22px 22px 0 0; padding: 0 0 18px; overflow: hidden;
+  -webkit-mask: radial-gradient(circle 14px at 0 100%, transparent 98%, #000) , radial-gradient(circle 14px at 100% 100%, transparent 98%, #000); -webkit-mask-composite: source-in; mask: radial-gradient(circle 14px at 0 100%, transparent 98%, #000) intersect, radial-gradient(circle 14px at 100% 100%, transparent 98%, #000); }
+.pass-stub { border-radius: 0 0 22px 22px; padding: 20px 18px 22px; display: grid; gap: 14px; justify-items: center; border-top: 3px dashed #D6CFE0;
+  -webkit-mask: radial-gradient(circle 14px at 0 0, transparent 98%, #000), radial-gradient(circle 14px at 100% 0, transparent 98%, #000); -webkit-mask-composite: source-in; mask: radial-gradient(circle 14px at 0 0, transparent 98%, #000) intersect, radial-gradient(circle 14px at 100% 0, transparent 98%, #000); }
+.pass-band { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 14px 18px; background: linear-gradient(90deg, var(--ink), #2B3C98); color: #fff; }
+.pass-band b { font-family: var(--f-display); font-weight: 400; font-size: 22px; letter-spacing: .02em; }
+.pass-band b em { font-style: normal; color: var(--gold); }
+.pass-band span { font-family: var(--f-mono); font-size: 11px; font-weight: 700; letter-spacing: .14em; }
+.route { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 10px; padding: 18px 18px 6px; }
+.route div:last-child { text-align: right; }
+.route small { display: block; font-family: var(--f-mono); font-size: 10px; letter-spacing: .14em; color: #8A8398; text-transform: uppercase; }
+.route strong { font-family: var(--f-display); font-weight: 400; font-size: clamp(30px, 9vw, 46px); color: var(--ink); line-height: 1; }
+.route .mid { color: var(--roof); width: 54px; }
+.route .city { display: block; font-size: 13px; color: var(--text-dim); }
+.pass-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 10px; padding: 12px 18px 0; }
+.pass-grid small { display: block; font-family: var(--f-mono); font-size: 10px; letter-spacing: .14em; color: #8A8398; text-transform: uppercase; }
+.pass-grid b { font-family: var(--f-mono); font-size: 15px; font-weight: 700; color: var(--text-dark); }
+.pass-grid .go { color: #1F9A4B; }
+.barcode { width: 100%; max-width: 360px; height: 54px; color: var(--text-dark); }
+.pass-stub .stores { animation: none; }
+.pass-stub .store-soon { color: var(--text-dark); border-color: #BDB4CC; background: transparent; }
+
+/* ---------------- footer */
+.foot { background: var(--night); color: var(--text-soft); position: relative; overflow: hidden; }
+.foot .wrap { display: grid; gap: 14px; justify-items: center; text-align: center; padding-block: 56px calc(48px + env(safe-area-inset-bottom, 0px)); }
+.foot img { width: 64px; border-radius: 16px; }
+.foot p { font-size: 14px; max-width: 40em; }
+.foot .legal { font-size: 12px; opacity: .7; }
+.stars { position: absolute; inset: 0; background-image: radial-gradient(1.5px 1.5px at 20% 30%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 70% 20%, #fff 50%, transparent 51%), radial-gradient(1.5px 1.5px at 85% 60%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 40% 75%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 10% 80%, #fff 50%, transparent 51%), radial-gradient(1.5px 1.5px at 55% 45%, #fff 50%, transparent 51%); opacity: .5; pointer-events: none; }
+
+/* ---------------- wider screens */
+/* phone: download buttons inside the first screen */
+@media (max-width: 959px) {
+  .hero .wrap { padding-top: 72px; gap: 12px; }
+  .hero .pill { order: 1; } .hero .logo { order: 2; } .hero .captain-stage { order: 3; } .hero .stores { order: 4; }
+  .hero .note { order: 5; } .hero h1 { order: 6; margin-top: 22px; } .hero .sub { order: 7; }
+  .captain-stage { width: min(60vw, 290px, 34svh); margin-block: -4px 0; }
+  .hero .stores { display: grid; grid-template-columns: 1fr 1fr; width: 100%; max-width: 440px; gap: 10px; animation-delay: .55s; }
+  .hero .store { min-width: 0; justify-content: center; gap: 8px; padding: 10px 10px; border-radius: 14px; }
+  .hero .store svg { width: 24px; height: 24px; }
+  .hero .store b { font-size: 21px; } .hero .store-soon b { font-size: 20px; }
+  .hero .store small { font-size: 9px; }
+  .hero .note { animation-delay: .65s; }
+  .hero .stores { grid-template-columns: 1.15fr 1fr; }
+  .hero .store b { white-space: nowrap; }
+}
+@media (max-width: 379px) {
+  .hero .store { padding-inline: 8px; gap: 6px; }
+  .hero .store svg { width: 20px; height: 20px; }
+  .hero .store b { font-size: 18px; } .hero .store-soon b { font-size: 17px; }
+  .hero .note { font-size: 11px; letter-spacing: .02em; }
+}
+@media (min-width: 760px) {
+  .facts { gap: 18px; }
+  .paper { padding: 44px 40px 44px 84px; background-image: linear-gradient(90deg, transparent 60px, var(--margin) 60px, var(--margin) 62px, transparent 62px), repeating-linear-gradient(180deg, transparent 0 31px, var(--rule) 31px 32px); }
+  .manual { grid-template-columns: 1fr 1fr; gap: 28px 34px; }
+  .pass { grid-template-columns: minmax(0, 1fr) 270px; }
+  .pass-main { border-radius: 22px 0 0 22px; -webkit-mask: radial-gradient(circle 14px at 100% 0, transparent 98%, #000), radial-gradient(circle 14px at 100% 100%, transparent 98%, #000); -webkit-mask-composite: source-in; mask: radial-gradient(circle 14px at 100% 0, transparent 98%, #000) intersect, radial-gradient(circle 14px at 100% 100%, transparent 98%, #000); }
+  .pass-stub { border-radius: 0 22px 22px 0; border-top: 0; border-left: 3px dashed #D6CFE0; align-content: center;
+    -webkit-mask: radial-gradient(circle 14px at 0 0, transparent 98%, #000), radial-gradient(circle 14px at 0 100%, transparent 98%, #000); -webkit-mask-composite: source-in; mask: radial-gradient(circle 14px at 0 0, transparent 98%, #000) intersect, radial-gradient(circle 14px at 0 100%, transparent 98%, #000); }
+  .pass-stub .stores { flex-direction: column; }
+  .pass-stub .store { min-width: 0; width: 100%; }
+}
+@media (min-width: 960px) {
+  .hero .wrap { grid-template-columns: 1.05fr 1fr; text-align: left; justify-items: start; column-gap: 24px; padding-top: 110px; padding-bottom: 190px; }
+  .hero .wrap > * { grid-column: 1; }
+  .hero .captain-stage { grid-column: 2; grid-row: 1 / span 6; align-self: center; width: min(44vw, 520px); }
+  .stores { justify-content: flex-start; }
+  .skyline-wrap { height: 230px; }
+  .skyline-far { height: 210px; } .skyline-near { height: 170px; }
+  .fly .wrap { grid-template-columns: 1fr 1fr; gap: 72px; }
+  .fly .phone-area { grid-column: 2; grid-row: 1; width: 320px; }
+  .rooms { grid-auto-flow: row; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-columns: auto; overflow: visible; padding-inline: 0; }
+  .rooms-outer .rooms { max-width: 1160px; margin-inline: auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+  .swipe-hint { display: none; }
+  .challenge .wrap { grid-template-columns: 1fr minmax(0, 480px); gap: 64px; }
+  .desk .wrap { gap: 88px; }
+}
+@media (hover: none) { .polaroid:hover { transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition: none !important; scroll-behavior: auto !important; }
+  .flyer, .cloud { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#home" aria-label="Fold Airlines home"><img src="assets/icon.webp" alt="" width="36" height="36"><span>Fold <b>Airlines</b></span></a>
+    <a class="top-cta" href="https://play.google.com/store/apps/details?id=com.envatech.foldairlines" target="_blank" rel="noopener">Play free</a>
+  </div>
+</header>
+
+<main id="home">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="sun" aria-hidden="true"></div>
+    <div class="rays" aria-hidden="true"></div>
+    <div class="cloud c1" aria-hidden="true"></div><div class="cloud c2" aria-hidden="true"></div><div class="cloud c3" aria-hidden="true"></div><div class="cloud c4" aria-hidden="true"></div>
+    <svg class="flyer f1" viewBox="0 0 40 24" aria-hidden="true"><path fill="currentColor" d="M1 13 39 1 17 23 14 15Z"/><path fill="rgba(0,0,0,.15)" d="M39 1 14 15 17 23Z"/></svg>
+    <svg class="flyer f2" viewBox="0 0 40 24" aria-hidden="true"><path fill="currentColor" d="M1 13 39 1 17 23 14 15Z"/></svg>
+    <svg class="flyer f3" viewBox="0 0 40 24" aria-hidden="true"><path fill="currentColor" d="M1 13 39 1 17 23 14 15Z"/></svg>
+
+    <div class="wrap">
+      <span class="pill"><i></i>Now boarding on Google Play</span>
+      <img class="logo" src="assets/logo.webp" width="1100" height="187" alt="Fold Airlines">
+      <div class="captain-stage" id="captainStage" aria-hidden="true">
+        <svg class="trail" viewBox="0 0 700 440" preserveAspectRatio="none">
+          <defs><linearGradient id="trailGrad" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#FFE9A0" stop-opacity="0"/><stop offset=".55" stop-color="#FFD24A" stop-opacity=".8"/><stop offset="1" stop-color="#FFF6CF"/></linearGradient></defs>
+          <path d="M10 420 C 140 300, 230 230, 420 230"/><path d="M60 430 C 170 330, 250 270, 420 250"/>
+        </svg>
+        <div class="ring"></div>
+        <img class="captain" src="assets/captain.webp" width="720" height="720" alt="">
+        <i class="spark s1"></i><i class="spark s2"></i><i class="spark s3"></i><i class="spark s4"></i><i class="spark s5"></i>
+      </div>
+      <h1 id="hero-title">One sheet of paper.<br>One very big house.</h1>
+      <p class="sub">Steer a paper plane through libraries, kitchens, pillow fights and rooftops. Fly close to everything. Touch nothing.</p>
+      <div class="stores">
+        <a class="store store-play" href="https://play.google.com/store/apps/details?id=com.envatech.foldairlines" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFC83D" d="M4.5 2.8c-.3.3-.5.8-.5 1.3v15.8c0 .5.2 1 .5 1.3l9-9.2z"/><path fill="#6BE38F" d="M16.7 8.4 6 2.3c-.5-.3-1-.3-1.5-.1l9 9.2z"/><path fill="#FF7A6B" d="M4.5 21.8c.4.2 1 .2 1.5-.1l10.7-6.1-3.2-3.2z"/><path fill="#7CC4FF" d="m20.2 10.4-3.5-2-3.2 3.3 3.2 3.2 3.5-2c1-.6 1-2 0-2.5z"/></svg>
+          <span><small>GET IT ON</small><b>Google Play</b></span>
+        </a>
+        <span class="store store-soon" aria-label="App Store version coming soon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3.5 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span><small>COMING SOON</small><b>App Store</b></span>
+        </span>
+      </div>
+      <p class="note">Free to play · Android today · iPhone soon</p>
+    </div>
+    <div class="skyline-wrap" aria-hidden="true"><svg class="skyline skyline-far" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g class="far"><path fill="#9C6FB0" d="M-20 250V201H54V250ZM48 250V191H139V250ZM133 250V189H222V250ZM225 250V199H343V250ZM339 250V171H409V250ZM409 250V179H502V250ZM500 250V184H574V250ZM570 250V181H678V250ZM679 250V177H783V250ZM787 250V176H862V250ZM864 250V175H949V250ZM946 250V202H1047V250ZM1049 250V173H1148V250ZM1142 250V185H1260V250ZM393 165V139H404V171ZM554 173V147H565V179ZM834 169V143H845V175Z"/><path fill="#8A5FA4" d="M-26 203L17 169L60 203ZM42 193L93 160L145 193ZM127 191L178 156L228 191ZM219 201L284 151L349 201ZM333 173L374 146L415 173ZM403 181L456 149L508 181ZM494 186L537 151L580 186ZM564 183L624 144L684 183ZM673 179L731 138L789 179ZM781 178L825 148L868 178ZM858 177L906 145L955 177ZM940 204L997 168L1053 204ZM1043 175L1099 139L1154 175ZM1136 187L1201 138L1266 187Z"/></g><rect y="248" width="1200" height="60" fill="#8A5FA4"/></svg><svg class="skyline skyline-near" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g class="near"><path fill="#F4D9C4" d="M-20 300V237H132V300ZM136 300V209H287V300ZM280 300V213H376V300ZM377 300V217H492V300ZM498 300V210H657V300ZM662 300V233H763V300ZM757 300V244H856V300ZM857 300V246H1003V300ZM999 300V223H1107V300ZM1108 300V240H1255V300Z"/><path fill="#9E3B24" d="M242 190V164H253V196ZM738 219V193H749V225ZM821 228V202H832V234ZM1067 208V182H1078V214ZM1197 215V189H1208V221Z"/><path fill="#E2633A" d="M-26 239L56 177L138 239ZM130 211L212 160L293 211ZM274 215L328 170L382 215ZM371 219L435 176L498 219ZM492 212L577 140L663 212ZM656 235L712 193L769 235ZM751 246L807 200L862 246ZM851 248L930 182L1009 248ZM993 225L1053 181L1113 225ZM1102 242L1182 179L1261 242Z"/><path fill="#B9482B" d="M56 177L138 239H56ZM212 160L293 211H212ZM328 170L382 215H328ZM435 176L498 219H435ZM577 140L663 212H577ZM712 193L769 235H712ZM807 200L862 246H807ZM930 182L1009 248H930ZM1053 181L1113 225H1053ZM1182 179L1261 242H1182Z"/><path class="win" fill="#FFD27A" d="M13 255h14v18h-14ZM68 255h14v18h-14ZM170 234h14v18h-14ZM224 234h14v18h-14ZM301 237h14v18h-14ZM336 237h14v18h-14ZM403 240h14v18h-14ZM533 235h14v18h-14ZM590 235h14v18h-14ZM684 252h14v18h-14ZM720 252h14v18h-14ZM779 260h14v18h-14ZM889 261h14v18h-14ZM1023 245h14v18h-14ZM1141 257h14v18h-14ZM1193 257h14v18h-14Z"/></g></svg></div>
+  </section>
+
+  <div class="ticker" aria-hidden="true"><div class="ticker-track">
+    <span>Flight FA 001</span><span>Now boarding</span><span>Gate: Google Play</span><span>Destination: every room in the house</span><span>App Store: coming soon</span>
+    <span>Flight FA 001</span><span>Now boarding</span><span>Gate: Google Play</span><span>Destination: every room in the house</span><span>App Store: coming soon</span>
+  </div></div>
+
+  <section class="fly" aria-labelledby="fly-title">
+    <div class="wrap">
+      <div class="fly-copy">
+        <p class="eyebrow">Real gameplay</p>
+        <h2 class="h2" id="fly-title">It never lands.</h2>
+        <p class="lede">The plane keeps flying and keeps getting faster. You steer with one thumb and keep it off the walls, the shelves and the furniture. Every room you clear opens into the next one.</p>
+        <div class="facts">
+          <div class="fact"><b>1 thumb</b><span>joystick steering</span></div>
+          <div class="fact"><b>8+ rooms</b><span>from library to rooftops</span></div>
+          <div class="fact"><b>∞</b><span>it only gets faster</span></div>
+        </div>
+      </div>
+      <div class="phone-area">
+        <div class="phone"><video id="reel" muted playsinline loop preload="none" poster="assets/reel.jpg" data-src="assets/reel.mp4" aria-label="Gameplay: the paper plane flying through the library, over the rooftops, through a pillow wall and a park"></video></div>
+        <span class="chip k1">NEAR MISS +80</span>
+        <span class="chip k2">×4 COMBO</span>
+        <span class="chip k3">11,870 m</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="departures" aria-labelledby="dep-title">
+    <div class="wrap">
+      <div class="board-head">
+        <h2 class="board-title" id="dep-title"><svg viewBox="0 0 40 24" aria-hidden="true"><path fill="currentColor" d="M1 13 39 1 17 23 14 15Z"/></svg>DEPARTURES</h2>
+        <span class="swipe-hint">Swipe <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <p class="lede">Every run strings rooms together in a new order. Here is where tonight's flights are headed.</p>
+    </div>
+    <div class="rooms-outer">
+      <div class="rooms" tabindex="0" aria-label="Rooms in the game">
+        <article class="room"><div class="room-row"><span>FA101</span><span class="dest">Library</span><span class="status go">Boarding</span></div>
+          <video muted playsinline loop preload="none" poster="assets/room-library.jpg" data-src="assets/room-library.mp4" aria-label="Library gameplay"></video><p>Shelves up to the ceiling and a red carpet down the middle. Aim for the doorway.</p></article>
+        <article class="room"><div class="room-row"><span>FA102</span><span class="dest">Pillow Fight</span><span class="status warn">Turbulence</span></div>
+          <video muted playsinline loop preload="none" poster="assets/room-pillow.jpg" data-src="assets/room-pillow.mp4" aria-label="Pillow fight room gameplay"></video><p>A wall of pillows with two holes in it. Pick one, fast.</p></article>
+        <article class="room"><div class="room-row"><span>FA103</span><span class="dest">Kitchen</span><span class="status">On time</span></div>
+          <video muted playsinline loop preload="none" poster="assets/room-kitchen.jpg" data-src="assets/room-kitchen.mp4" aria-label="Kitchen gameplay"></video><p>Checkered floor, green walls and gold rings over the counters.</p></article>
+        <article class="room"><div class="room-row"><span>FA104</span><span class="dest">Rooftops</span><span class="status">Sunset</span></div>
+          <video muted playsinline loop preload="none" poster="assets/room-rooftops.jpg" data-src="assets/room-rooftops.mp4" aria-label="Rooftops gameplay"></video><p>You made it outside. Skim the tiles and mind the chimneys.</p></article>
+        <article class="room"><div class="room-row"><span>FA105</span><span class="dest">Classroom</span><span class="status">On time</span></div>
+          <video muted playsinline loop preload="none" poster="assets/room-classroom.jpg" data-src="assets/room-classroom.mp4" aria-label="Classroom corridor gameplay"></video><p>A long bright corridor, ceiling fans and no running in the halls.</p></article>
+        <article class="room"><div class="room-row"><span>FA106</span><span class="dest">Park</span><span class="status">On time</span></div>
+          <video muted playsinline loop preload="none" poster="assets/room-park.jpg" data-src="assets/room-park.mp4" aria-label="Park gameplay"></video><p>Trees, lamp posts and a wall with one round hole. Thread it.</p></article>
+        <article class="room"><div class="room-row"><span>FA107</span><span class="dest">Bedroom</span><span class="status">On time</span></div>
+          <video muted playsinline loop preload="none" poster="assets/room-bedroom.jpg" data-src="assets/room-bedroom.mp4" aria-label="Bedroom gameplay"></video><p>Bedside lamps glowing and a canopy to duck under.</p></article>
+        <article class="room"><div class="room-row"><span>FA108</span><span class="dest">Midnight</span><span class="status dark">Lights out</span></div>
+          <video muted playsinline loop preload="none" poster="assets/room-midnight.jpg" data-src="assets/room-midnight.mp4" aria-label="Midnight room gameplay"></video><p>Same house, lights off. You only see what is right in front of you.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="challenge" aria-labelledby="game-title">
+    <div class="wrap">
+      <div class="challenge-copy">
+        <p class="eyebrow">Mini game</p>
+        <h2 class="h2" id="game-title">Pause on the perfect frame.</h2>
+        <p class="lede">Captain Fold swings back and forth over the rooftops. Tap the moment he fits his outline. Nail it and he swings faster.</p>
+      </div>
+      <div class="game">
+        <div class="stage" id="stage" aria-label="Pause challenge. Press the pause button when Captain Fold lines up with the dashed outline.">
+          <video muted playsinline loop preload="none" poster="assets/game-bg.jpg" data-src="assets/game-bg.mp4" aria-hidden="true"></video>
+          <svg class="g-outline" id="gOutline" viewBox="0 0 1000 1000" aria-hidden="true"><path class="under" d="M178 12 L169 12 L160 14 L151 16 L142 17 L134 19 L125 21 L116 24 L108 27 L99 27 L91 25 L81 24 L72 24 L63 25 L54 26 L45 28 L36 33 L29 40 L24 48 L21 57 L20 67 L22 76 L22 83 L18 87 L10 88 L-0 91 L-4 101 L-4 111 L-4 120 L-4 129 L-4 138 L-4 147 L-4 156 L-4 165 L-3 174 L-3 183 L-3 192 L-3 201 L-3 210 L-3 219 L-2 228 L-2 237 L-2 246 L-2 255 L-2 264 L-1 273 L-1 282 L-1 291 L-1 300 L-1 309 L-0 318 L0 327 L5 334 L11 342 L15 350 L19 358 L23 366 L27 374 L31 382 L36 390 L40 398 L44 406 L48 414 L52 421 L56 429 L61 437 L65 445 L69 453 L73 461 L77 469 L82 477 L86 485 L90 493 L94 501 L99 509 L103 516 L109 524 L114 531 L120 538 L126 544 L132 550 L138 557 L144 564 L150 571 L156 578 L162 584 L168 591 L174 598 L180 605 L186 611 L192 618 L198 625 L204 631 L210 638 L216 645 L222 651 L228 658 L234 664 L241 671 L247 677 L254 683 L260 689 L267 696 L273 702 L280 708 L286 714 L293 720 L299 726 L306 733 L313 739 L319 745 L326 751 L332 757 L339 764 L345 770 L352 776 L359 782 L365 788 L371 795 L377 801 L383 808 L389 815 L395 821 L401 828 L407 835 L413 842 L419 848 L425 855 L431 862 L437 869 L443 875 L449 882 L455 889 L460 896 L466 903 L472 910 L478 916 L486 921 L494 924 L503 924 L511 922 L519 917 L525 911 L531 905 L537 898 L543 891 L549 884 L555 877 L561 871 L567 864 L573 857 L579 850 L585 844 L591 837 L597 830 L603 824 L609 817 L615 810 L621 803 L627 797 L633 790 L639 784 L646 778 L653 772 L659 766 L665 759 L672 753 L678 747 L685 741 L691 735 L698 729 L705 723 L711 716 L718 710 L725 704 L731 698 L737 692 L744 685 L750 679 L757 673 L763 667 L770 660 L776 654 L782 647 L788 640 L794 634 L800 627 L806 621 L812 614 L818 607 L825 601 L831 594 L837 587 L843 581 L848 574 L855 567 L861 560 L867 554 L872 547 L878 540 L884 533 L890 527 L896 520 L901 512 L905 505 L909 497 L914 489 L918 481 L922 473 L926 465 L930 457 L935 449 L939 441 L943 433 L947 425 L951 417 L956 409 L960 401 L964 393 L968 385 L973 378 L977 370 L981 362 L985 354 L989 346 L995 339 L999 331 L999 322 L999 313 L1000 304 L1000 295 L1000 286 L1000 277 L1000 268 L1000 259 L1001 250 L1001 241 L1001 232 L1001 223 L1001 214 L1001 205 L1002 196 L1002 187 L1002 178 L1002 169 L1002 160 L1002 151 L1002 142 L1002 133 L1002 122 L994 115 L984 118 L975 123 L968 129 L962 136 L956 143 L950 149 L944 156 L938 163 L932 169 L926 176 L920 182 L914 189 L908 196 L902 203 L896 209 L889 215 L883 222 L876 228 L870 234 L864 240 L857 247 L850 253 L844 259 L837 265 L830 271 L824 277 L817 283 L810 289 L803 295 L796 300 L789 305 L780 306 L772 301 L765 295 L760 287 L757 279 L752 271 L747 264 L741 257 L735 251 L728 245 L721 240 L713 236 L705 233 L696 231 L687 230 L678 229 L669 228 L660 227 L651 227 L643 228 L634 230 L625 232 L617 235 L608 238 L600 241 L591 244 L582 246 L573 248 L564 248 L555 248 L546 247 L537 246 L528 245 L519 243 L511 240 L502 239 L493 240 L485 241 L475 242 L467 242 L458 244 L448 243 L440 238 L434 231 L428 224 L422 218 L416 212 L409 206 L401 202 L393 197 L385 192 L378 186 L373 178 L370 170 L367 161 L365 152 L362 144 L359 136 L355 127 L351 120 L346 112 L341 105 L335 98 L329 92 L323 85 L318 77 L312 71 L305 65 L298 60 L291 54 L284 49 L276 44 L269 40 L261 36 L253 32 L244 29 L236 25 L228 21 L220 18 L211 15 L202 13 L194 12 L185 12 Z"/><path class="dash" d="M178 12 L169 12 L160 14 L151 16 L142 17 L134 19 L125 21 L116 24 L108 27 L99 27 L91 25 L81 24 L72 24 L63 25 L54 26 L45 28 L36 33 L29 40 L24 48 L21 57 L20 67 L22 76 L22 83 L18 87 L10 88 L-0 91 L-4 101 L-4 111 L-4 120 L-4 129 L-4 138 L-4 147 L-4 156 L-4 165 L-3 174 L-3 183 L-3 192 L-3 201 L-3 210 L-3 219 L-2 228 L-2 237 L-2 246 L-2 255 L-2 264 L-1 273 L-1 282 L-1 291 L-1 300 L-1 309 L-0 318 L0 327 L5 334 L11 342 L15 350 L19 358 L23 366 L27 374 L31 382 L36 390 L40 398 L44 406 L48 414 L52 421 L56 429 L61 437 L65 445 L69 453 L73 461 L77 469 L82 477 L86 485 L90 493 L94 501 L99 509 L103 516 L109 524 L114 531 L120 538 L126 544 L132 550 L138 557 L144 564 L150 571 L156 578 L162 584 L168 591 L174 598 L180 605 L186 611 L192 618 L198 625 L204 631 L210 638 L216 645 L222 651 L228 658 L234 664 L241 671 L247 677 L254 683 L260 689 L267 696 L273 702 L280 708 L286 714 L293 720 L299 726 L306 733 L313 739 L319 745 L326 751 L332 757 L339 764 L345 770 L352 776 L359 782 L365 788 L371 795 L377 801 L383 808 L389 815 L395 821 L401 828 L407 835 L413 842 L419 848 L425 855 L431 862 L437 869 L443 875 L449 882 L455 889 L460 896 L466 903 L472 910 L478 916 L486 921 L494 924 L503 924 L511 922 L519 917 L525 911 L531 905 L537 898 L543 891 L549 884 L555 877 L561 871 L567 864 L573 857 L579 850 L585 844 L591 837 L597 830 L603 824 L609 817 L615 810 L621 803 L627 797 L633 790 L639 784 L646 778 L653 772 L659 766 L665 759 L672 753 L678 747 L685 741 L691 735 L698 729 L705 723 L711 716 L718 710 L725 704 L731 698 L737 692 L744 685 L750 679 L757 673 L763 667 L770 660 L776 654 L782 647 L788 640 L794 634 L800 627 L806 621 L812 614 L818 607 L825 601 L831 594 L837 587 L843 581 L848 574 L855 567 L861 560 L867 554 L872 547 L878 540 L884 533 L890 527 L896 520 L901 512 L905 505 L909 497 L914 489 L918 481 L922 473 L926 465 L930 457 L935 449 L939 441 L943 433 L947 425 L951 417 L956 409 L960 401 L964 393 L968 385 L973 378 L977 370 L981 362 L985 354 L989 346 L995 339 L999 331 L999 322 L999 313 L1000 304 L1000 295 L1000 286 L1000 277 L1000 268 L1000 259 L1001 250 L1001 241 L1001 232 L1001 223 L1001 214 L1001 205 L1002 196 L1002 187 L1002 178 L1002 169 L1002 160 L1002 151 L1002 142 L1002 133 L1002 122 L994 115 L984 118 L975 123 L968 129 L962 136 L956 143 L950 149 L944 156 L938 163 L932 169 L926 176 L920 182 L914 189 L908 196 L902 203 L896 209 L889 215 L883 222 L876 228 L870 234 L864 240 L857 247 L850 253 L844 259 L837 265 L830 271 L824 277 L817 283 L810 289 L803 295 L796 300 L789 305 L780 306 L772 301 L765 295 L760 287 L757 279 L752 271 L747 264 L741 257 L735 251 L728 245 L721 240 L713 236 L705 233 L696 231 L687 230 L678 229 L669 228 L660 227 L651 227 L643 228 L634 230 L625 232 L617 235 L608 238 L600 241 L591 244 L582 246 L573 248 L564 248 L555 248 L546 247 L537 246 L528 245 L519 243 L511 240 L502 239 L493 240 L485 241 L475 242 L467 242 L458 244 L448 243 L440 238 L434 231 L428 224 L422 218 L416 212 L409 206 L401 202 L393 197 L385 192 L378 186 L373 178 L370 170 L367 161 L365 152 L362 144 L359 136 L355 127 L351 120 L346 112 L341 105 L335 98 L329 92 L323 85 L318 77 L312 71 L305 65 L298 60 L291 54 L284 49 L276 44 L269 40 L261 36 L253 32 L244 29 L236 25 L228 21 L220 18 L211 15 L202 13 L194 12 L185 12 Z"/></svg>
+          <img class="g-capt" id="gCapt" src="assets/captain.webp" width="720" height="720" alt="">
+          <div class="g-hud"><span>Level <b id="gLevel">1</b></span><span>Best <b id="gBest">–</b></span></div>
+          <div class="g-result" id="gResult" hidden><strong id="gGrade">Perfect fit</strong><small id="gDetail">0 px off</small></div>
+        </div>
+        <button class="g-btn" id="gBtn" type="button">PAUSE</button>
+        <p class="g-tip">Tap the picture, the button or press Space.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="desk" aria-label="Flight manual, hangar and crew">
+    <div class="wrap">
+      <article class="paper" aria-labelledby="manual-title">
+        <h2 id="manual-title">Flight manual</h2>
+        <span class="hand kicker">read before takeoff!</span>
+        <ul class="manual">
+          <li><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="19" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="30" cy="19" r="8" fill="#FFC83D" stroke="currentColor" stroke-width="3"/></svg>
+            <div><h3>One thumb, full control</h3><p>Push the joystick and the plane glides up, down, left or right. Let go and it levels out.</p></div></li>
+          <li><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="5" width="38" height="38" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="24" r="9" fill="#B5CBEE" stroke="currentColor" stroke-width="3"/></svg>
+            <div><h3>Thread the gaps</h3><p>Doorways, holes in walls, gaps between shelves. If there is a way through, you can fit.</p></div></li>
+          <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 34 40 14" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M14 40h26" stroke="#E8746A" stroke-width="5" stroke-linecap="round"/><text x="26" y="12" font-family="Arial" font-weight="700" font-size="11" fill="currentColor">×4</text></svg>
+            <div><h3>Fly close, score big</h3><p>Every near miss adds to your combo. The closer you pass, the faster the points stack up.</p></div></li>
+          <li><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="12" fill="none" stroke="#FFC83D" stroke-width="5"/><circle cx="24" cy="24" r="12" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 24h6m28 0h6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+            <div><h3>Collect gold</h3><p>Grab the stars and fly through the gold rings. Spend it in the hangar on new planes.</p></div></li>
+          <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 40V18L24 6l18 12v22" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M18 40V28h12v12" fill="#E2633A" stroke="currentColor" stroke-width="3"/></svg>
+            <div><h3>The house never ends</h3><p>Library, kitchen, classroom, rooftops and more. The rooms keep coming and the plane keeps speeding up.</p></div></li>
+          <li><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="14" width="30" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><path d="M36 21l7-4v14l-7-4" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="21" cy="25" r="5" fill="#B5CBEE" stroke="currentColor" stroke-width="2"/></svg>
+            <div><h3>Pick your view</h3><p>Three camera distances. Stay close for speed or pull back to see what is coming.</p></div></li>
+        </ul>
+        <p class="margin-note">hardest room? the pillow wall. trust me.</p>
+      </article>
+
+      <div class="hangar-head">
+        <p class="eyebrow on-desk">The hangar</p>
+        <h2 class="h2">Pick a plane.</h2>
+        <p class="lede">Every one of these is in the game. Collect gold, unlock them, take them for a spin.</p>
+      </div>
+      <div class="polaroids">
+        <figure class="polaroid"><img src="assets/skin-classic.jpg" width="320" height="320" alt="Classic paper plane in the library"><figcaption>the classic</figcaption></figure>
+        <figure class="polaroid"><img src="assets/skin-frog.jpg" width="320" height="320" alt="Green frog plane"><figcaption>froggy</figcaption></figure>
+        <figure class="polaroid"><img src="assets/skin-cat.jpg" width="320" height="320" alt="Cat plane in a space helmet"><figcaption>astro cat</figcaption></figure>
+        <figure class="polaroid"><img src="assets/skin-propeller.jpg" width="320" height="320" alt="Glider plane over the rooftops"><figcaption>the glider</figcaption></figure>
+        <figure class="polaroid"><img src="assets/skin-blue.jpg" width="320" height="320" alt="Glitter plane with a rainbow trail"><figcaption>disco</figcaption></figure>
+      </div>
+
+      <div class="licence-wrap">
+        <div><p class="eyebrow on-desk">Your pilot</p><h2 class="h2">Meet Captain Fold.</h2></div>
+        <div class="licence" id="licence">
+          <div class="lic-top"><b>FOLD AIRLINES</b><span>PILOT LICENCE</span></div>
+          <div class="lic-body">
+            <div class="lic-photo"><img src="assets/captain.webp" width="720" height="720" alt="Captain Fold, a paper plane with goggles and a red scarf"></div>
+            <dl class="lic-fields">
+              <div><dt>Name</dt><dd>Captain Fold</dd></div>
+              <div><dt>Licence no.</dt><dd>FA-0001</dd></div>
+              <div><dt>Made of</dt><dd>One sheet of notebook paper</dd></div>
+              <div><dt>Gear</dt><dd>Flying goggles, red scarf</dd></div>
+              <div><dt>Afraid of</dt><dd>Scissors, rain, the recycling bin</dd></div>
+            </dl>
+            <div class="lic-sign"><span class="hand">Capt. Fold</span><span>SIGNATURE</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pass-wrap" id="download">
+        <div><p class="eyebrow on-desk">Boarding now</p><h2 class="h2">Ready for takeoff?</h2></div>
+        <div class="pass">
+          <div class="pass-main">
+            <div class="pass-band"><b>FOLD <em>AIRLINES</em></b><span>BOARDING PASS</span></div>
+            <div class="route">
+              <div><small>From</small><strong>YOU</strong><span class="city">your couch</span></div>
+              <svg class="mid" viewBox="0 0 40 24" aria-hidden="true"><path fill="currentColor" d="M1 13 39 1 17 23 14 15Z"/></svg>
+              <div><small>To</small><strong>ALL</strong><span class="city">every room</span></div>
+            </div>
+            <div class="pass-grid">
+              <div><small>Flight</small><b>FA 001</b></div>
+              <div><small>Gate</small><b>PLAY</b></div>
+              <div><small>Seat</small><b>WINDOW</b></div>
+              <div><small>Passenger</small><b>YOU</b></div>
+              <div><small>Boarding</small><b class="go">NOW</b></div>
+              <div><small>Fare</small><b>FREE</b></div>
+            </div>
+          </div>
+          <div class="pass-stub">
+            <svg class="barcode" viewBox="0 0 360 54" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 0h4v54h-4zM6 0h5v54h-5zM15 0h2v54h-2zM19 0h2v54h-2zM23 0h3v54h-3zM29 0h3v54h-3zM34 0h5v54h-5zM43 0h4v54h-4zM49 0h2v54h-2zM55 0h2v54h-2zM61 0h4v54h-4zM67 0h3v54h-3zM73 0h3v54h-3zM78 0h4v54h-4zM84 0h2v54h-2zM89 0h2v54h-2zM94 0h5v54h-5zM102 0h4v54h-4zM110 0h2v54h-2zM114 0h3v54h-3zM119 0h4v54h-4zM127 0h4v54h-4zM135 0h3v54h-3zM142 0h5v54h-5zM151 0h2v54h-2zM155 0h5v54h-5zM164 0h2v54h-2zM169 0h2v54h-2zM175 0h5v54h-5zM183 0h4v54h-4zM189 0h5v54h-5zM198 0h5v54h-5zM206 0h2v54h-2zM212 0h4v54h-4zM218 0h5v54h-5zM225 0h2v54h-2zM231 0h4v54h-4zM237 0h2v54h-2zM243 0h3v54h-3zM248 0h2v54h-2zM253 0h2v54h-2zM258 0h2v54h-2zM262 0h4v54h-4zM268 0h5v54h-5zM277 0h4v54h-4zM285 0h2v54h-2zM291 0h5v54h-5zM299 0h3v54h-3zM306 0h4v54h-4zM313 0h3v54h-3zM319 0h4v54h-4zM327 0h5v54h-5zM334 0h5v54h-5zM341 0h4v54h-4zM349 0h5v54h-5z"/></svg>
+            <div class="stores">
+              <a class="store store-play" href="https://play.google.com/store/apps/details?id=com.envatech.foldairlines" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFC83D" d="M4.5 2.8c-.3.3-.5.8-.5 1.3v15.8c0 .5.2 1 .5 1.3l9-9.2z"/><path fill="#6BE38F" d="M16.7 8.4 6 2.3c-.5-.3-1-.3-1.5-.1l9 9.2z"/><path fill="#FF7A6B" d="M4.5 21.8c.4.2 1 .2 1.5-.1l10.7-6.1-3.2-3.2z"/><path fill="#7CC4FF" d="m20.2 10.4-3.5-2-3.2 3.3 3.2 3.2 3.5-2c1-.6 1-2 0-2.5z"/></svg>
+                <span><small>GET IT ON</small><b>Google Play</b></span>
+              </a>
+              <span class="store store-soon" aria-label="App Store version coming soon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3.5 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                <span><small>COMING SOON</small><b>App Store</b></span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="wrap">
+    <img src="assets/icon.webp" width="64" height="64" alt="">
+    <p>Fold Airlines is an endless paper plane game for Android. The iPhone version is on its way.</p>
+    <p class="legal">© 2026 Fold Airlines. Google Play is a trademark of Google LLC. App Store is a trademark of Apple Inc.</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // header background after scrolling
+  const top = document.getElementById('top');
+  const hero = document.querySelector('.hero');
+  const far = document.querySelector('.skyline-far'), stageEl = document.getElementById('captainStage');
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      top.classList.toggle('scrolled', y > 30);
+      if (!reduce && y < hero.offsetHeight) {
+        if (far) far.style.transform = `translateY(${y * 0.12}px)`;
+        if (stageEl) stageEl.style.transform = `translateY(${y * 0.16}px)`;
+      }
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // videos: load and play only while on screen
+  const vids = document.querySelectorAll('video[data-src]');
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      const v = en.target;
+      if (en.isIntersecting) {
+        if (!v.getAttribute('src')) v.src = v.dataset.src;
+        if (!reduce) { const p = v.play(); if (p) p.catch(() => {}); }
+      } else if (!v.paused) v.pause();
+    });
+  }, { threshold: 0.25 }) : null;
+  vids.forEach(v => {
+    if (io) io.observe(v); else { v.src = v.dataset.src; }
+    if (reduce) v.addEventListener('click', () => { if (!v.getAttribute('src')) v.src = v.dataset.src; v.paused ? v.play().catch(() => {}) : v.pause(); });
+  });
+
+  // licence card tilt (mouse only)
+  const lic = document.getElementById('licence');
+  if (lic && window.matchMedia('(hover: hover)').matches && !reduce) {
+    lic.addEventListener('pointermove', e => {
+      const r = lic.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      lic.style.transform = `perspective(800px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg)`;
+    });
+    lic.addEventListener('pointerleave', () => { lic.style.transform = ''; });
+  }
+
+  // ---------------- pause challenge
+  const stage = document.getElementById('stage'), capt = document.getElementById('gCapt'), outline = document.getElementById('gOutline');
+  const btn = document.getElementById('gBtn'), res = document.getElementById('gResult'), grade = document.getElementById('gGrade'), detail = document.getElementById('gDetail');
+  const lvlEl = document.getElementById('gLevel'), bestEl = document.getElementById('gBest');
+  const U = 1000, SIZE = 440, FIT = { x: 500, y: 560, r: -6 }, LEN = 1300, PIV = { x: 500, y: 560 - 1300 }, THMAX = 0.36;
+  let level = 1, phase = Math.PI / 2, running = true, visible = false, last = performance.now(), best = null;
+  try { const b = parseFloat(localStorage.getItem('fold-pause-best')); if (!isNaN(b)) best = b; } catch (e) {}
+  const period = () => Math.max(1.0, 2.6 * Math.pow(0.86, level - 1));
+  const omega = () => 2 * Math.PI / period();
+  function pose(ph) { const th = THMAX * Math.sin(ph); return { x: PIV.x + LEN * Math.sin(th), y: PIV.y + LEN * Math.cos(th), r: FIT.r + th * 57.2958 * 0.8, th }; }
+  function place(el, p) { const s = stage.clientWidth / U; el.style.transform = `translate(${(p.x - SIZE / 2) * s}px, ${(p.y - SIZE / 2) * s}px) rotate(${p.r}deg)`; }
+  // stage units: 1000 wide x 1250 tall (4:5), scaled by the stage's pixel width
+  function draw() { place(outline, FIT); place(capt, pose(phase)); }
+  function showBest() { bestEl.textContent = best === null ? '–' : `${Math.round(best)} px`; lvlEl.textContent = level; }
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    if (running && visible) { phase += dt * omega(); draw(); }
+    requestAnimationFrame(frame);
+  }
+  function act(t) {
+    if (running) {
+      // exact phase at the moment of the tap, not the last drawn frame
+      const ph = phase + Math.max(0, (t - last) / 1000) * omega();
+      phase = ph; running = false; const p = pose(ph); draw();
+      const err = Math.abs(LEN * p.th);
+      const cyc = ((ph % Math.PI) + Math.PI) % Math.PI; const late = cyc < Math.PI / 2;
+      const ms = Math.round((late ? cyc : Math.PI - cyc) / omega() * 1000);
+      let g, cls;
+      if (err <= 6) { g = 'Perfect fit!'; cls = 'good'; }
+      else if (err <= 18) { g = 'So close!'; cls = 'good'; }
+      else if (err <= 45) { g = 'Not bad'; cls = 'ok'; }
+      else { g = 'Missed him'; cls = 'miss'; }
+      grade.textContent = g; detail.textContent = `${Math.round(err)} px off · ${ms} ms ${late ? 'late' : 'early'}`;
+      res.className = 'g-result ' + cls; res.hidden = false; stage.classList.toggle('hit', err <= 18);
+      if (best === null || err < best) { best = err; try { localStorage.setItem('fold-pause-best', String(err)); } catch (e) {} }
+      if (err <= 18) level += 1;
+      showBest(); btn.textContent = err <= 18 ? `LEVEL ${level}` : 'FLY AGAIN';
+    } else {
+      running = true; res.hidden = true; stage.classList.remove('hit'); btn.textContent = 'PAUSE'; last = performance.now();
+    }
+  }
+  stage.addEventListener('pointerdown', e => { if (e.button > 0) return; e.preventDefault(); act(e.timeStamp || performance.now()); });
+  btn.addEventListener('pointerdown', e => { if (e.button > 0) return; e.preventDefault(); act(e.timeStamp || performance.now()); });
+  btn.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); if (!e.repeat) act(performance.now()); } });
+  btn.addEventListener('click', e => e.preventDefault());
+  document.addEventListener('keydown', e => {
+    if (e.key !== ' ' || e.target === btn || /INPUT|TEXTAREA|BUTTON|A/.test(e.target.tagName)) return;
+    const r = stage.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+    e.preventDefault(); if (!e.repeat) act(performance.now());
+  });
+  if ('IntersectionObserver' in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; last = performance.now(); }, { threshold: 0.1 }).observe(stage);
+  else visible = true;
+  window.addEventListener('resize', draw);
+  showBest(); draw(); requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
