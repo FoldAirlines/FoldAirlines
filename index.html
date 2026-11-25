@@ -8,7 +8,7 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Fold Airlines">
-<meta property="og:description" content="Steer a paper plane through an endless house. Free on Google Play.">
+<meta property="og:description" content="Steer a paper plane through an endless house. Free on Google Play and the App Store.">
 <link rel="canonical" href="https://foldairlines.github.io/FoldAirlines/">
 <meta property="og:url" content="https://foldairlines.github.io/FoldAirlines/">
 <meta property="og:site_name" content="Fold Airlines">
@@ -19,7 +19,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://foldairlines.github.io/FoldAirlines/assets/og.jpg">
 <title>Fold Airlines</title>
-<meta name="description" content="Fold Airlines: steer a paper plane through an endless house. Libraries, kitchens, pillow fights and rooftops. Free on Google Play.">
+<meta name="apple-itunes-app" content="app-id=6829033438">
+<meta name="description" content="Fold Airlines: steer a paper plane through an endless house. Libraries, kitchens, pillow fights and rooftops. Free on Google Play and the App Store.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Caveat:wght@600;700&family=Lilita+One&family=Space+Mono:wght@400;700&display=swap">
@@ -136,10 +137,10 @@ p { margin: 0; }
 .store span { display: grid; line-height: 1.05; }
 .store small { font-family: var(--f-mono); font-size: 10px; letter-spacing: .12em; opacity: .8; }
 .store b { font-family: var(--f-display); font-weight: 400; font-size: 25px; letter-spacing: .01em; }
-.store-play::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.28) 48%, transparent 66%); transform: translateX(-120%); animation: shine 3.6s 2s ease-in-out infinite; }
+.store-play::after, .store-apple::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.28) 48%, transparent 66%); transform: translateX(-120%); animation: shine 3.6s 2s ease-in-out infinite; }
 @keyframes shine { 0%, 55% { transform: translateX(-120%); } 85%, 100% { transform: translateX(120%); } }
-.store-play:hover { border-color: var(--gold); }
-.store-play:active { transform: translateY(3px); box-shadow: 0 2px 0 rgba(0,0,0,.35); }
+.store-play:hover, .store-apple:hover { border-color: var(--gold); }
+.store-play:active, .store-apple:active { transform: translateY(3px); box-shadow: 0 2px 0 rgba(0,0,0,.35); }
 .store-soon { background: rgba(14,11,31,.35); border-style: dashed; box-shadow: none; color: rgba(255,255,255,.85); cursor: default; }
 .store-soon b { font-size: 22px; }
 .hero .store-soon { color: var(--ink); background: rgba(255,255,255,.4); border-color: rgba(19,32,90,.4); }
@@ -300,6 +301,7 @@ p { margin: 0; }
 .pass-grid .go { color: #1F9A4B; }
 .barcode { width: 100%; max-width: 360px; height: 54px; color: var(--text-dark); }
 .pass-stub .stores { animation: none; }
+.pass-stub .store { min-width: 226px; }
 .pass-stub .store-soon { color: var(--text-dark); border-color: #BDB4CC; background: transparent; }
 
 /* ---------------- footer */
@@ -384,7 +386,7 @@ p { margin: 0; }
     <svg class="flyer f3" viewBox="0 0 40 24" aria-hidden="true"><path fill="currentColor" d="M1 13 39 1 17 23 14 15Z"/></svg>
 
     <div class="wrap">
-      <span class="pill"><i></i>Now boarding on Google Play</span>
+      <span class="pill"><i></i>Now boarding · Android &amp; iOS</span>
       <img class="logo" src="assets/logo.webp" width="1100" height="187" alt="Fold Airlines">
       <div class="captain-stage" id="captainStage" aria-hidden="true">
         <svg class="trail" viewBox="0 0 700 440" preserveAspectRatio="none">
@@ -402,19 +404,19 @@ p { margin: 0; }
           <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFC83D" d="M4.5 2.8c-.3.3-.5.8-.5 1.3v15.8c0 .5.2 1 .5 1.3l9-9.2z"/><path fill="#6BE38F" d="M16.7 8.4 6 2.3c-.5-.3-1-.3-1.5-.1l9 9.2z"/><path fill="#FF7A6B" d="M4.5 21.8c.4.2 1 .2 1.5-.1l10.7-6.1-3.2-3.2z"/><path fill="#7CC4FF" d="m20.2 10.4-3.5-2-3.2 3.3 3.2 3.2 3.5-2c1-.6 1-2 0-2.5z"/></svg>
           <span><small>GET IT ON</small><b>Google Play</b></span>
         </a>
-        <span class="store store-soon" aria-label="App Store version coming soon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3.5 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          <span><small>COMING SOON</small><b>App Store</b></span>
-        </span>
+        <a class="store store-apple" href="https://apps.apple.com/app/fold-airlines/id6829033438" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.37 12.73c-.03-2.7 2.2-4 2.3-4.06-1.25-1.83-3.2-2.08-3.9-2.11-1.66-.17-3.24.98-4.08.98-.85 0-2.14-.95-3.52-.93-1.81.03-3.48 1.05-4.41 2.67-1.88 3.26-.48 8.08 1.35 10.73.9 1.29 1.96 2.75 3.36 2.7 1.35-.06 1.86-.87 3.49-.87 1.63 0 2.09.87 3.51.84 1.45-.03 2.37-1.32 3.26-2.62 1.03-1.5 1.45-2.95 1.47-3.03-.03-.01-2.82-1.08-2.85-4.3zM13.7 4.82c.74-.9 1.24-2.15 1.11-3.4-1.07.04-2.37.71-3.14 1.61-.69.8-1.29 2.08-1.13 3.3 1.19.1 2.41-.6 3.16-1.51z"/></svg>
+          <span><small>DOWNLOAD ON THE</small><b>App Store</b></span>
+        </a>
       </div>
-      <p class="note">Free to play · Android today · iPhone soon</p>
+      <p class="note">Free to play · Android &amp; iPhone</p>
     </div>
     <div class="skyline-wrap" aria-hidden="true"><svg class="skyline skyline-far" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g class="far"><path fill="#9C6FB0" d="M-20 250V201H54V250ZM48 250V191H139V250ZM133 250V189H222V250ZM225 250V199H343V250ZM339 250V171H409V250ZM409 250V179H502V250ZM500 250V184H574V250ZM570 250V181H678V250ZM679 250V177H783V250ZM787 250V176H862V250ZM864 250V175H949V250ZM946 250V202H1047V250ZM1049 250V173H1148V250ZM1142 250V185H1260V250ZM393 165V139H404V171ZM554 173V147H565V179ZM834 169V143H845V175Z"/><path fill="#8A5FA4" d="M-26 203L17 169L60 203ZM42 193L93 160L145 193ZM127 191L178 156L228 191ZM219 201L284 151L349 201ZM333 173L374 146L415 173ZM403 181L456 149L508 181ZM494 186L537 151L580 186ZM564 183L624 144L684 183ZM673 179L731 138L789 179ZM781 178L825 148L868 178ZM858 177L906 145L955 177ZM940 204L997 168L1053 204ZM1043 175L1099 139L1154 175ZM1136 187L1201 138L1266 187Z"/></g><rect y="248" width="1200" height="60" fill="#8A5FA4"/></svg><svg class="skyline skyline-near" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g class="near"><path fill="#F4D9C4" d="M-20 300V237H132V300ZM136 300V209H287V300ZM280 300V213H376V300ZM377 300V217H492V300ZM498 300V210H657V300ZM662 300V233H763V300ZM757 300V244H856V300ZM857 300V246H1003V300ZM999 300V223H1107V300ZM1108 300V240H1255V300Z"/><path fill="#9E3B24" d="M242 190V164H253V196ZM738 219V193H749V225ZM821 228V202H832V234ZM1067 208V182H1078V214ZM1197 215V189H1208V221Z"/><path fill="#E2633A" d="M-26 239L56 177L138 239ZM130 211L212 160L293 211ZM274 215L328 170L382 215ZM371 219L435 176L498 219ZM492 212L577 140L663 212ZM656 235L712 193L769 235ZM751 246L807 200L862 246ZM851 248L930 182L1009 248ZM993 225L1053 181L1113 225ZM1102 242L1182 179L1261 242Z"/><path fill="#B9482B" d="M56 177L138 239H56ZM212 160L293 211H212ZM328 170L382 215H328ZM435 176L498 219H435ZM577 140L663 212H577ZM712 193L769 235H712ZM807 200L862 246H807ZM930 182L1009 248H930ZM1053 181L1113 225H1053ZM1182 179L1261 242H1182Z"/><path class="win" fill="#FFD27A" d="M13 255h14v18h-14ZM68 255h14v18h-14ZM170 234h14v18h-14ZM224 234h14v18h-14ZM301 237h14v18h-14ZM336 237h14v18h-14ZM403 240h14v18h-14ZM533 235h14v18h-14ZM590 235h14v18h-14ZM684 252h14v18h-14ZM720 252h14v18h-14ZM779 260h14v18h-14ZM889 261h14v18h-14ZM1023 245h14v18h-14ZM1141 257h14v18h-14ZM1193 257h14v18h-14Z"/></g></svg></div>
   </section>
 
   <div class="ticker" aria-hidden="true"><div class="ticker-track">
-    <span>Flight FA 001</span><span>Now boarding</span><span>Gate: Google Play</span><span>Destination: every room in the house</span><span>App Store: coming soon</span>
-    <span>Flight FA 001</span><span>Now boarding</span><span>Gate: Google Play</span><span>Destination: every room in the house</span><span>App Store: coming soon</span>
+    <span>Flight FA 001</span><span>Now boarding</span><span>Gate: Google Play</span><span>Destination: every room in the house</span><span>Gate: App Store</span>
+    <span>Flight FA 001</span><span>Now boarding</span><span>Gate: Google Play</span><span>Destination: every room in the house</span><span>Gate: App Store</span>
   </div></div>
 
   <section class="fly" aria-labelledby="fly-title">
@@ -568,10 +570,10 @@ p { margin: 0; }
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFC83D" d="M4.5 2.8c-.3.3-.5.8-.5 1.3v15.8c0 .5.2 1 .5 1.3l9-9.2z"/><path fill="#6BE38F" d="M16.7 8.4 6 2.3c-.5-.3-1-.3-1.5-.1l9 9.2z"/><path fill="#FF7A6B" d="M4.5 21.8c.4.2 1 .2 1.5-.1l10.7-6.1-3.2-3.2z"/><path fill="#7CC4FF" d="m20.2 10.4-3.5-2-3.2 3.3 3.2 3.2 3.5-2c1-.6 1-2 0-2.5z"/></svg>
                 <span><small>GET IT ON</small><b>Google Play</b></span>
               </a>
-              <span class="store store-soon" aria-label="App Store version coming soon">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3.5 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                <span><small>COMING SOON</small><b>App Store</b></span>
-              </span>
+              <a class="store store-apple" href="https://apps.apple.com/app/fold-airlines/id6829033438" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.37 12.73c-.03-2.7 2.2-4 2.3-4.06-1.25-1.83-3.2-2.08-3.9-2.11-1.66-.17-3.24.98-4.08.98-.85 0-2.14-.95-3.52-.93-1.81.03-3.48 1.05-4.41 2.67-1.88 3.26-.48 8.08 1.35 10.73.9 1.29 1.96 2.75 3.36 2.7 1.35-.06 1.86-.87 3.49-.87 1.63 0 2.09.87 3.51.84 1.45-.03 2.37-1.32 3.26-2.62 1.03-1.5 1.45-2.95 1.47-3.03-.03-.01-2.82-1.08-2.85-4.3zM13.7 4.82c.74-.9 1.24-2.15 1.11-3.4-1.07.04-2.37.71-3.14 1.61-.69.8-1.29 2.08-1.13 3.3 1.19.1 2.41-.6 3.16-1.51z"/></svg>
+                <span><small>DOWNLOAD ON THE</small><b>App Store</b></span>
+              </a>
             </div>
           </div>
         </div>
@@ -584,7 +586,7 @@ p { margin: 0; }
   <div class="stars" aria-hidden="true"></div>
   <div class="wrap">
     <img src="assets/icon.webp" width="64" height="64" alt="">
-    <p>Fold Airlines is an endless paper plane game for Android. The iPhone version is on its way.</p>
+    <p>Fold Airlines is an endless paper plane game for Android and iPhone.</p>
     <p class="legal">© 2026 Fold Airlines. Google Play is a trademark of Google LLC. App Store is a trademark of Apple Inc.</p>
   </div>
 </footer>
@@ -592,6 +594,11 @@ p { margin: 0; }
 <script>
 (() => {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // header button: App Store on iPhone/iPad, Google Play everywhere else
+  const cta = document.querySelector('.top-cta');
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (cta && isIOS) cta.href = 'https://apps.apple.com/app/fold-airlines/id6829033438';
 
   // header background after scrolling
   const top = document.getElementById('top');
